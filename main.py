@@ -1,20 +1,20 @@
 import disnake as discord
 from disnake.ext import commands
 
-client = commands.Bot(command_prefix="?")
+client = commands.InteractionBot()
 
 @client.event
 async def on_ready():
     print("Ready!")
 
 
-@client.slash_command(name="ping",description="E")
+@client.slash_command(name="ping", description="Get the latency of bot.")
 async def ping(ctx):
     latency = round(client.latency * 1000)
     await ctx.send(f"Pong! The ping is `{latency}` ms", ephemeral=False)
 
-@client.slash_command(name="echo")
-async def echo(ctx,* ,text):
+@client.slash_command(name="echo", description="Send a message through the bot!")
+async def echo(ctx, text: str):
     await ctx.send("Your text has been sent.", ephemeral=True)
     await ctx.send(text, ephemeral=False)
 
