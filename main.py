@@ -10,7 +10,8 @@ async def on_ready():
 
 @client.slash_command(name="ping",description="E")
 async def ping(ctx):
-    await ctx.send("lol", ephemeral=False)
+    latency = round(client.latency * 1000)
+    await ctx.send(f"Pong! The ping is `{latency}` ms", ephemeral=False)
 
 @client.slash_command(name="echo")
 async def echo(ctx,* ,text):
